@@ -1,4 +1,3 @@
-import { CloudCog } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const MovieDescription = ({ movie , id}) => {
@@ -17,8 +16,7 @@ export const MovieDescription = ({ movie , id}) => {
         );
         const movies = await responce.json();
         setMovieDescription(movies.results);
-        console.log(movies);
-        
+  
       } catch (error) {
         console.log(error);
       }

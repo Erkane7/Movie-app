@@ -1,30 +1,20 @@
 import { ArrowRight } from "lucide-react";
 import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
+import { getTopRatedMovies } from "@/servecis/getTopRatedMovies";
 
 export const TopRated = () => {
   const [topRated, setTopRated] = useState([]);
-  const getTopRated = async () => {
-    try {
-      const responce = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/movie/top_rated?language=en-US&page=1`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-          },
-        }
-      );
-      const movies = await responce.json();
-      setTopRated(movies.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   useEffect(() => {
+    const getTopRated = async () => {
+      const responce = await getTopRatedMovies();
+      setTopRated(responce?.results);
+    } 
     getTopRated();
   }, []);
+
+
   return (
     <div className="w-full flex justify-center px-4 mt-12 mb-12">
       <div className="max-w-7xl w-full flex flex-col gap-6">

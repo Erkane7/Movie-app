@@ -1,31 +1,19 @@
 import { ArrowRight } from "lucide-react";
 import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
+import { getUpComingMovies } from "@/servecis/getUpComingMovies";
 
 export const Upcoming = () => {
   const [upComingMovie, setUpComingMovies] = useState([]);
-  const getUpComingMovies = async () => {
-    try {
-      const responce = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/movie/upcoming?language=en-US&page=1`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-          },
-        }
-      );
-      const movies = await responce.json();
-      setUpComingMovies(movies.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getUpComingMovies();
-  }, []);
 
+  useEffect(() => {
+    const getUpComing = async () => {
+      const responce = await getUpComingMovies();
+      setUpComingMovies(responce?.results);
+    };
+    getUpComing();
+  }, []);
+  
   return (
     <div className="w-full flex justify-center px-4 mt-12">
       <div className="max-w-7xl w-full flex flex-col gap-6">
