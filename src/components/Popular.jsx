@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
-import { getPopularMovies } from "@/servecis/getPopularMovies";
+import { getPopularMovies } from "@/services/getPopularMovies";
 
 export const Popular = () => {
   const [popularMovie, setPopularMovies] = useState([]);

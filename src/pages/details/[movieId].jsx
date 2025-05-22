@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import { MovieDescription } from "@/components/MovieDescription";
 import { MovieFrame } from "@/components/MovieFrame";
 import { MoreLikeMovie } from "@/components/MovieMoreLike";
-import { getMovieById } from "@/servecis/getMovieById";
+import { getMovieById } from "@/services/getMovieById";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 

@@ -8,7 +8,7 @@ export const MoreLikeMovie = ({ id }) => {
   const getMoreLikeMovie = async () => {
     try {
       const responce = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}movie/${id}/similar?language=en-US&page=1}`,
+        `${process.env.NEXT_PUBLIC_API_URL}movie/${id}/similar?language=en-US&page=1`,
         {
           method: "GET",
           headers: {

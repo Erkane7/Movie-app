@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
-import { getUpComingMovies } from "@/servecis/getUpComingMovies";
+import { getUpComingMovies } from "@/services/getUpComingMovies";
 
 export const Upcoming = () => {
   const [upComingMovie, setUpComingMovies] = useState([]);

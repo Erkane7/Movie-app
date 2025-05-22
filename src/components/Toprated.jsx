@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
-import { getTopRatedMovies } from "@/servecis/getTopRatedMovies";
+import { getTopRatedMovies } from "@/services/getTopRatedMovies";
 
 export const TopRated = () => {
   const [topRated, setTopRated] = useState([]);
@@ -28,7 +28,7 @@ export const TopRated = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {topRated.slice(0, 10).map((movie, index) => (
             <MovieCard
-            id={movie.id}
+              id={movie.id}
               title={movie.title}
               vote_average={movie.vote_average}
               poster_path={movie.poster_path}
