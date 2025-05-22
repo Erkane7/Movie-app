@@ -30,7 +30,7 @@ export const MovieDescription = ({ movie , id}) => {
 
     
   return (
-    <div className="flex flex-col mx-auto rounded-lg shadow-md mt-10 max-w-[1280px] h-[271px]">
+    <div className="flex flex-col mx-auto rounded-lg shadow-md mt-10 max-w-[1280px] h-[271px] gap-5">
       <div className="flex ">
         <span className="flex  items-center bg-gray-200 border rounded-4xl">
           {movie?.title}

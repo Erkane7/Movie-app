@@ -13,8 +13,8 @@ const MyCarouselItem = ({ title, vote_average, backdrop_path, overview, id }) =>
         height={600}
         alt="Feutured picture"
       />
-      <div className="absolute top-0 left-0 w-full h-full flex items-center px-6 md:px-20">
-        <div className="text-white max-w-xl space-y-4">
+      <div className="sm:absolute sm:text-white md:absolute top-0 left-0 w-full h-full flex items-center px-6 sm:px-20 md:px-20">
+        <div className="max-w-xl  space-y-4">
           <h4 className="text-lg md:text-xl font-light">Now Playing:</h4>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
             {title}
@@ -27,7 +27,8 @@ const MyCarouselItem = ({ title, vote_average, backdrop_path, overview, id }) =>
             </span>
           </div>
           <p className="text-sm md:text-base text-black-200 ">{overview}</p>
-          <button className="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-md bg-white text-black font-medium hover:bg-gray-100 transition">
+          <button   
+           className="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-md bg-white text-black font-medium hover:bg-gray-100 transition">
             <Play className="bg-black-100" />
             Watch Trailer
           </button>

@@ -24,7 +24,7 @@ export const MovieCarousel = ({ nowPlayingMovie }) => {
         <CarouselContent>
           {nowPlayingMovie?.slice(0, 7).map((movie, index) => (
             <CarouselItem key={index}>
-              <div className="p-1">
+              <div className="mx-auto max-w-[1600px]">
                 <MyCarouselItem
                   id={movie.id}
                   title={movie.title}

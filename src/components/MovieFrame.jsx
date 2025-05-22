@@ -38,10 +38,12 @@ export const MovieFrame = ({ movie, poster_path ,backdrop_path}) => {
         width={1000}
         height={430}
         alt="Poster picture"
-      />   <div className="absolute top-[610px] left-[524px] text-white flex gap-2 text-xl">
-      <Play className="border rounded-4xl \"/>
-      <span>Play trailer</span>
-      <span></span>
+      />   
+      <div className="absolute inline-flex mx-auto top-[600px] left-[724px] text-white gap-2 text-xl">
+        <button className="rounded-md bg-white text-black hover:bg-gray-100 transition">
+          <Play className="bg-black-100" />
+        </button>
+        <p>Watch Trailer</p>
     </div>
         </div>
         </div>
