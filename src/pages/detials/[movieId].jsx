@@ -24,9 +24,9 @@ export default function Page() {
   return (
     <div>
       <Header />
-      <MovieFrame movie={movie} poster_path={movie.poster_path} />
-      <MovieDescription movie={movie} />
-      <MoreLikeMovie />
+      <MovieFrame movie={movie} poster_path={movie.poster_path} backdrop_path={movie.backdrop_path}/>
+      <MovieDescription movie={movie} id={movieId} />
+      <MoreLikeMovie id={movieId} />
       <Footer />
     </div>
   );

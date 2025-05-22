@@ -26,6 +26,7 @@ export const MovieCarousel = ({ nowPlayingMovie }) => {
             <CarouselItem key={index}>
               <div className="p-1">
                 <MyCarouselItem
+                  id={movie.id}
                   title={movie.title}
                   vote_average={movie.vote_average}
                   backdrop_path={movie.backdrop_path}

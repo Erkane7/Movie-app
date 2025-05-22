@@ -1,18 +1,19 @@
 import { Play, Star } from "lucide-react";
 import Image from "next/image";
 
-export const MovieFrame = ({ movie, poster_path }) => {
+export const MovieFrame = ({ movie, poster_path ,backdrop_path}) => {
+
   return (
-    <div className="flex flex-col rounded-lg shadow-md overflow-hidden ml-30 mt-10 w-[1080px] h-[520px]">
-      <div className="flex justify-between  ">
+ <div className="flex flex-col  mx-auto  mt-12 rounded-lg shadow-md overflow-hidden mt-10 max-w-[1280px]">
+      <div className="flex justify-between  px-2 ">
         <div>
-          <p className="font-bold">{movie?.title}</p>
-          <span></span>
-          <span></span>
-          <span>{movie?.runtime}</span>
+          <p className="font-bold text-4xl ">{movie?.title}</p>
+          <span>{movie?.release_date}</span>
+          {/* <span>{movie?.adult}</span> */}
+          <span> · {Math.floor(movie?.runtime / 60)}h {movie?.runtime % 60}m</span>
         </div>
         <div className="flex flex-col gap-2 ">
-          <p className="text-sm">Rating:</p>
+          <p className="text-lg">Rating:</p>
           <div className="flex gap-3">
             <Star className="text-yellow-400" />
             <span className="text-gray-900 text-sm ">
@@ -24,21 +25,28 @@ export const MovieFrame = ({ movie, poster_path }) => {
         </div>
       </div>
       <div>
+        <div className="flex gap-6" >
         <Image
           src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${poster_path}`}
           width={290}
           height={430}
           alt="Poster picture"
-        />
-        <div className="absolute w-full overflow-hidden">
-          {/* <Video /> */}
-          <div className="absolute top-[360px] left-[24px] flex ">
-            <Play />
-            <span>Play trailer</span>
-            <span>Duration</span>
-          </div>
+        />  
+        <div>
+        <Image
+        src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${backdrop_path}`}
+        width={1000}
+        height={430}
+        alt="Poster picture"
+      />   <div className="absolute top-[610px] left-[524px] text-white flex gap-2 text-xl">
+      <Play className="border rounded-4xl \"/>
+      <span>Play trailer</span>
+      <span></span>
+    </div>
+        </div>
         </div>
       </div>
     </div>
+   
   );
 };

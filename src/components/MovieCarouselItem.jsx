@@ -1,9 +1,11 @@
 import React from "react";
-import { Star, Play, Fullscreen } from "lucide-react";
+import { Star, Play } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-const MyCarouselItem = ({ title, vote_average, backdrop_path, overview }) => {
+const MyCarouselItem = ({ title, vote_average, backdrop_path, overview, id }) => {
   return (
+    <Link href={`/detials/${id}`}>
     <div className="relative w-full md:h-[600px] lg:h-[700px] overflow-hidden ">
       <Image
         src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${backdrop_path}`}
@@ -32,6 +34,7 @@ const MyCarouselItem = ({ title, vote_average, backdrop_path, overview }) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 

@@ -13,7 +13,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-indigo-700 text-white py-8 px-6">
+    <footer className="bg-indigo-700 text-white py-8 px-6 mt-15">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
         <div>
           <div className="flex items-center gap-2 mb-2">

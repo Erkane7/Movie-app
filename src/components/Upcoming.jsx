@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
-// import { getUpComingMovies, upComingMovie } from "@/utilis/getUpComingMovies";
 
 export const Upcoming = () => {
   const [upComingMovie, setUpComingMovies] = useState([]);
