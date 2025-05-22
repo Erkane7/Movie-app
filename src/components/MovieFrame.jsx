@@ -41,7 +41,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path }) => {
             className="rounded-md object-cover"
           />
           <button
-            className="absolute bottom-4 left-4 flex items-center gap-2 rounded-md bg-white text-black px-4 py-2 hover:bg-gray-100 transition"
+            className="absolute bottom-15 left-30 flex items-center gap-2 rounded-md bg-white text-black px-4 py-2 hover:bg-gray-100 transition"
           >
             <Play />
             Watch Trailer
