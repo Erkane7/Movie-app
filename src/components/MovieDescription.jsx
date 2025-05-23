@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 export const MovieDescription = ({ movie, id }) => {
   const [cast, setCast] = useState([]);
+  const [director, setDirector] = useState([]);
+  const [writer, setWriter] = useState([]);
 
   const getMovieDescription = async () => {
     try {
@@ -15,10 +17,21 @@ export const MovieDescription = ({ movie, id }) => {
           },
         }
       );
-      const castList = await response.json();
-      setCast(castList.cast);
+
+      const data = await response.json();
+      setCast(data.cast || []);
+
+      const directors =
+        data.crew?.filter((person) => person.job === "Director") || [];
+      const writers =
+        data.crew?.filter(
+          (person) => person.job === "Writer" || person.department === "Writing"
+        ) || [];
+
+      setDirector(directors);
+      setWriter(writers);
     } catch (error) {
-      console.log(error);
+      console.error("Failed to fetch movie description:", error);
     }
   };
 
@@ -36,12 +49,34 @@ export const MovieDescription = ({ movie, id }) => {
       </div>
       <p className="mb-6">{movie?.overview}</p>
 
-      <div className="flex gap-8">
-        <h3 className="text-xl font-bold ">Stars</h3>
-        <div className="flex gap-4 mt-0.5">
+      {director.length > 0 && (
+        <div className="flex gap-8 ">
+          <h3 className="text-xl font-bold">Director</h3>
+          <div className="flex gap-4 mt-0.5">
+            {director.map((director) => (
+              <p key={director.id}> {director.name} </p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {writer.length > 0 && (
+        <div className="flex gap-8 mt-4 ">
+          <h3 className="text-xl font-bold">Writers</h3>
+          <div className="flex gap-4 mt-0.5 ml-2">
+            {writer.map((writer) => (
+              <p key={writer.id}> {writer.name} </p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="flex gap-8 mt-4">
+        <h3 className="text-xl font-bold">Stars </h3>
+        <div className="flex gap-4 mt-0.5 ml-6">
           {cast.slice(0, 3).map((actor) => (
-            <div key={actor.cast_id} className="w-32">
-              <p className="font-medium">-{actor.name}</p>
+            <div key={actor.cast_id}>
+              <p className="font-medium">{actor.name} </p>
             </div>
           ))}
         </div>

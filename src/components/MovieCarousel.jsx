@@ -14,14 +14,14 @@ export const MovieCarousel = ({ nowPlayingMovie }) => {
     <div>
       <Carousel
         className="relative mt-10"
-        plugins={[
-          Autoplay({
-            delay: 3000,
-          }),
-        ]}
+        // plugins={[
+        //   Autoplay({
+        //     delay: 3000,
+        //   }),
+        // ]}
       >
         <CarouselContent>
-          {nowPlayingMovie?.slice(0, 7).map((movie, index) => (
+          {nowPlayingMovie?.slice(0, 4  ).map((movie, index) => (
             <CarouselItem className="basis-full" key={movie.id}>
               <div className="mx-auto max-w-[1600px]">
                 <MyCarouselItem

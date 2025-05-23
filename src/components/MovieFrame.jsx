@@ -1,7 +1,37 @@
 import { Play, Star } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import Trailer from "./Trailer";
+// import { DialogTitle } from "./ui/dialog";
 
-export const MovieFrame = ({ movie, poster_path, backdrop_path }) => {
+export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
+  const [video, setVideo] = useState(null);
+  const [showTrailer, setShowTrailer] = useState(false);
+
+  const getTrailer = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}movie/${id}/videos?language=en-US`,
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          },
+        }
+      );
+      const data = await response.json();
+      setVideo(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!id) return;
+    getTrailer();
+  }, [id]);
+
   return (
     <div className="flex flex-col mx-auto mt-12 rounded-lg shadow-md overflow-hidden max-w-[1280px] bg-white dark:bg-gray-900">
       <div className="flex justify-between px-4 py-4">
@@ -25,7 +55,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path }) => {
               <span className="font-bold">
                 {typeof movie?.vote_average === "number"
                   ? movie.vote_average.toFixed(1)
-                  : "hooson"}
+                  : "N/A"}
               </span>
               <span>/10</span>
               <p>{movie?.vote_count} votes</p>
@@ -50,10 +80,27 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path }) => {
             className="rounded-md object-cover"
             alt={`${movie?.title} backdrop`}
           />
-          <button className="absolute bottom-4 left-8 flex items-center gap-2 rounded-md bg-white text-black px-4 py-2 hover:bg-gray-100 transition dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
+          <button
+            onClick={() => setShowTrailer(!showTrailer)}
+            className="absolute bottom-4 left-8 flex items-center gap-2 rounded-md bg-white text-black px-4 py-2 hover:bg-gray-100 transition dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
+          >
             <Play />
-            Watch Trailer
+            <span>Watch Trailer</span>
           </button>
+          {/* <DialogTitle> */}
+          {showTrailer && (
+            <div className="absolute top-0 right-40 w-full h-full flex justify-center items-center bg-black bg-opacity-90 z-10">
+              <div className="relative">
+                <button
+                  onClick={() => setShowTrailer(false)}
+                  className="absolute -top-4 -right-4 text-white bg-black rounded-full p-1"
+                ></button>
+
+                <Trailer id={id} />
+              </div>
+            </div>
+          )}
+          {/* </DialogTitle> */}
         </div>
       </div>
     </div>

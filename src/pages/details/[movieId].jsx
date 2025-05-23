@@ -25,6 +25,7 @@ export default function Page() {
     <div>
       <Header />
       <MovieFrame
+        id={movieId}
         movie={movie}
         poster_path={movie.poster_path}
         backdrop_path={movie.backdrop_path}

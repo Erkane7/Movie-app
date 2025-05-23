@@ -10,7 +10,7 @@ export const Popular = () => {
     const getPopular = async () => {
       const responce = await getPopularMovies();
       setPopularMovies(responce?.results);
-      }
+    };
     getPopular();
   }, []);
 
@@ -27,7 +27,7 @@ export const Popular = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {popularMovie.slice(0, 10).map((movie, index) => (
             <MovieCard
-            id={movie.id}
+              id={movie.id}
               title={movie.title}
               vote_average={movie.vote_average}
               poster_path={movie.poster_path}
@@ -37,4 +37,4 @@ export const Popular = () => {
       </div>
     </div>
   );
-}
+};
