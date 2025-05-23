@@ -10,20 +10,19 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 export const MovieCarousel = ({ nowPlayingMovie }) => {
-  console.log(nowPlayingMovie);
   return (
     <div>
       <Carousel
         className="relative mt-10"
         plugins={[
           Autoplay({
-            delay: 3500,
+            delay: 3000,
           }),
         ]}
       >
         <CarouselContent>
           {nowPlayingMovie?.slice(0, 7).map((movie, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem className="basis-full" key={movie.id}>
               <div className="mx-auto max-w-[1600px]">
                 <MyCarouselItem
                   id={movie.id}
@@ -36,8 +35,8 @@ export const MovieCarousel = ({ nowPlayingMovie }) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="invisible lg:visible absolute left-5 to-50%" />
-        <CarouselNext className="invisible lg:visible absolute right-5 to-50%" />
+        <CarouselPrevious className="invisible lg:visible absolute left-5 " />
+        <CarouselNext className="invisible lg:visible absolute right-5 " />
       </Carousel>
     </div>
   );

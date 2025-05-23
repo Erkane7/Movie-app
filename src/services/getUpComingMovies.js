@@ -1,7 +1,7 @@
 export const getUpComingMovies = async () => {
   try {
     const responce = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/movie/upcoming?language=en-US&page=1`,
+      `${process.env.NEXT_PUBLIC_API_URL}movie/upcoming?language=en-US&page=1`,
       {
         method: "GET",
         headers: {
@@ -15,4 +15,3 @@ export const getUpComingMovies = async () => {
     console.log(error);
   }
 };
-

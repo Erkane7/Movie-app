@@ -3,7 +3,11 @@ import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
 
 export const MoreLikeMovie = ({ id }) => {
-  
+  console.log(
+    "Fetching from:",
+    `${process.env.NEXT_PUBLIC_API_URL}/movie/${id}/similar?language=en-US&page=1`
+  );
+
   const [moreLikeMovie, setMoreLikeMovie] = useState([]);
   const getMoreLikeMovie = async () => {
     try {
@@ -17,8 +21,11 @@ export const MoreLikeMovie = ({ id }) => {
           },
         }
       );
+      if (!responce.ok) {
+        throw new Error(`HTTP error! status: ${responce.status}`);
+      }
+
       const movies = await responce.json();
-      
       setMoreLikeMovie(movies.results);
     } catch (error) {
       console.log(error);
@@ -43,12 +50,13 @@ export const MoreLikeMovie = ({ id }) => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {moreLikeMovie.slice(0, 5).map((movie, index) => (
             <MovieCard
+              key={movie.id}
               id={movie.id}
               title={movie.title}
               vote_average={movie.vote_average}
               poster_path={movie.poster_path}
             />
-           ))} 
+          ))}
         </div>
       </div>
     </div>

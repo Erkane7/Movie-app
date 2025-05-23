@@ -35,7 +35,7 @@ export default function Home() {
   // const IMAGE_BASE_URL = process.env.IMAGE_PATH;
   return (
     <div>
-      <Header />
+      <Header className="fixed" />
       <MovieCarousel nowPlayingMovie={nowPlayingMovie} />
       <Upcoming />
       <Popular />

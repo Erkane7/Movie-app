@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      'image.tmdb.org',
+      "image.tmdb.org",
       "img.etimg.com",
       "assets.vogue.com",
       "m.media-amazon.com",
@@ -13,4 +13,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-

@@ -13,7 +13,7 @@ export const Upcoming = () => {
     };
     getUpComing();
   }, []);
-  
+
   return (
     <div className="w-full flex justify-center px-4 mt-12">
       <div className="max-w-7xl w-full flex flex-col gap-6">
@@ -27,6 +27,7 @@ export const Upcoming = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {upComingMovie.slice(0, 10).map((movie, index) => (
             <MovieCard
+              key={movie.id}
               id={movie.id}
               title={movie.title}
               vote_average={movie.vote_average}

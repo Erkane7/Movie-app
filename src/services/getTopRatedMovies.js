@@ -1,7 +1,7 @@
 export const getTopRatedMovies = async () => {
   try {
     const responce = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/movie/top_rated?language=en-US&page=1`,
+      `${process.env.NEXT_PUBLIC_API_URL}movie/top_rated?language=en-US&page=1`,
       {
         method: "GET",
         headers: {

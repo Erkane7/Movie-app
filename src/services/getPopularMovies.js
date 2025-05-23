@@ -1,8 +1,7 @@
-
 export const getPopularMovies = async () => {
   try {
     const responce = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/movie/popular?language=en-US&page=1`,
+      `${process.env.NEXT_PUBLIC_API_URL}movie/popular?language=en-US&page=1`,
       {
         method: "GET",
         headers: {
@@ -11,7 +10,7 @@ export const getPopularMovies = async () => {
         },
       }
     );
-   return await responce.json();
+    return await responce.json();
   } catch (error) {
     console.log(error);
   }

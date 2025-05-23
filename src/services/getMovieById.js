@@ -1,7 +1,7 @@
 export const getMovieById = async (movieId) => {
   try {
     const responce = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/movie/${movieId}?language=en-US`,
+      `${process.env.NEXT_PUBLIC_API_URL}movie/${movieId}?language=en-US`,
       {
         method: "GET",
         headers: {
