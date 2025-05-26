@@ -2,11 +2,11 @@ import { Play, Star } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Trailer from "./Trailer";
-// import { DialogTitle } from "./ui/dialog";
+import { Dialog, DialogTrigger, DialogContent } from "./ui/dialog";
 
 export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
   const [video, setVideo] = useState(null);
-  const [showTrailer, setShowTrailer] = useState(false);
+  // const [showTrailer, setShowTrailer] = useState(false);
 
   const getTrailer = async () => {
     try {
@@ -43,8 +43,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
             {movie?.release_date}
           </span>
           <span className="text-gray-700 dark:text-gray-300">
-            {" "}
-            · {Math.floor(movie?.runtime / 60)}h {movie?.runtime % 60}m
+            {Math.floor(movie?.runtime / 60)}h {movie?.runtime % 60}m
           </span>
         </div>
         <div className="flex flex-col gap-2 text-right">
@@ -72,7 +71,11 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
           className="rounded-md"
           alt={`${movie?.title} poster`}
         />
-        <div className="relative flex-1">
+
+        <div className="relative">
+          <div className="absolute ml-12 mt-110">
+            <Trailer movieId={id} />
+          </div>
           <Image
             src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${backdrop_path}`}
             width={1000}
@@ -80,27 +83,6 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
             className="rounded-md object-cover"
             alt={`${movie?.title} backdrop`}
           />
-          <button
-            onClick={() => setShowTrailer(!showTrailer)}
-            className="absolute bottom-4 left-8 flex items-center gap-2 rounded-md bg-white text-black px-4 py-2 hover:bg-gray-100 transition dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-          >
-            <Play />
-            <span>Watch Trailer</span>
-          </button>
-          {/* <DialogTitle> */}
-          {showTrailer && (
-            <div className="absolute top-0 right-40 w-full h-full flex justify-center items-center bg-black bg-opacity-90 z-10">
-              <div className="relative">
-                <button
-                  onClick={() => setShowTrailer(false)}
-                  className="absolute -top-4 -right-4 text-white bg-black rounded-full p-1"
-                ></button>
-
-                <Trailer id={id} />
-              </div>
-            </div>
-          )}
-          {/* </DialogTitle> */}
         </div>
       </div>
     </div>
