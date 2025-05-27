@@ -27,11 +27,8 @@ export default function Category() {
     const fetchCategory = async () => {
       if (!movieCategory) return;
       const data = await getCategory(movieCategory, page);
-
-      console.log(data);
-
+      
       setCategories(data?.results);
-      // console.log(data);
     };
 
     fetchCategory();
@@ -62,7 +59,7 @@ export default function Category() {
               />
             ))}
           </div>
-          <div className="mt-8">
+          <div className="mt-">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

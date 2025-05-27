@@ -22,7 +22,7 @@ const MyCarouselItem = ({
           width={1920}
           height={1000}
           alt="Featured"
-          className="object-cover w-full h-full"
+          className="overflow-hidden p-0 rounded-2lg w-full h-full"
         />
       </Link>
 

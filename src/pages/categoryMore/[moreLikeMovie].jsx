@@ -1,31 +1,44 @@
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { MovieCard } from "@/components/MovieCard";
-
+import { Button } from "@/components/ui/button";
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { getMoreMovies } from "@/services/getMoremovies";
 import { useRouter } from "next/router";
-import { useQueryState } from "nuqs";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import { parseAsInteger, useQueryState } from "nuqs";
+import { useEffect } from "react";
 
-export default function moreMovie() {
-  const router = useRouter();
-  const { movieCategory } = router.query;
-  const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
+export default function Page (){
+   const [categories, setCategories] = useState([]);
 
-  return (
+    
+    const [router] =useRouter([]);
+    const {movieCat } =router.query;
+    const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1))
+   
+ 
+
+  useEffect(() => {
+    const fetchMoreLike = async () => {
+        if(!movieCat) return;
+        const data = await getMoreMovies(id,page)
+
+        setCategories(data?.results);
+    }
+   
+    fetchMoreLike();
+  }, [id,page]);
+
+   return ( 
     <div>
       <Header />
       <div className="w-full flex justify-center px-4 mt-12">
         <div className="max-w-7xl w-full flex flex-col gap-6">
           <div className="flex justify-between items-center">
-            <h1 className="text-xl font-bold">More like this</h1>
+            <h1 className="text-xl font-bold">
+              {(movieCategory === "upcoming" && "Upcoming") ||
+                (movieCategory === "popular" && "Popular") ||
+                (movieCategory === "top_rated" && "Top rated")}
+            </h1>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {categories.map((movie) => (
@@ -38,7 +51,7 @@ export default function moreMovie() {
               />
             ))}
           </div>
-          <div className="mt-8">
+          <div className="mt-">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
