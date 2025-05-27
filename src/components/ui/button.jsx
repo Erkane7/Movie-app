@@ -35,7 +35,13 @@ const buttonVariants = cva(
   }
 );
 
-function Button({ className, variant, size, asChild = false, ...props }) {
+function Button({
+  className = "text-black bg-gray-50 ",
+  variant,
+  size,
+  asChild = false,
+  ...props
+}) {
   const Comp = asChild ? Slot : "button";
 
   return (

@@ -10,7 +10,8 @@ export const getTopRatedMovies = async () => {
         },
       }
     );
-    return await responce.json();
+    const data = await responce.json();
+    return data;
   } catch (error) {
     console.log(error);
   }

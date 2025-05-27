@@ -82,7 +82,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
             height={430}
             className="rounded-md object-cover"
             alt={`${movie?.title} backdrop`}
-          />
+          />  
         </div>
       </div>
     </div>
