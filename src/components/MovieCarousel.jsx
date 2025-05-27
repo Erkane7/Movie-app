@@ -11,9 +11,9 @@ import Autoplay from "embla-carousel-autoplay";
 
 export const MovieCarousel = ({ nowPlayingMovie }) => {
   return (
-    <div className="w-full max-w-[1600px] mx-auto]">
+    <div >
       <Carousel
-        className="relative overflow-hidden rounded-lg mt-4 bg-gray-900"
+        className="relative overflow-hidden rounded-lg mt-4 "
         plugins={[
           Autoplay({
             delay: 3000

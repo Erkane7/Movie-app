@@ -17,7 +17,7 @@ export const MovieDescription = ({ movie, id }) => {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
           },
         }
-      );
+      );  
 
       const data = await response.json();
       setCast(data.cast);
