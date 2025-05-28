@@ -11,17 +11,17 @@ import Autoplay from "embla-carousel-autoplay";
 
 export const MovieCarousel = ({ nowPlayingMovie }) => {
   return (
-    <div >
+    <div>
       <Carousel
         className="relative overflow-hidden rounded-lg mt-4 "
         plugins={[
           Autoplay({
-            delay: 3000
+            delay: 3000,
           }),
         ]}
       >
         <CarouselContent>
-          {nowPlayingMovie?.slice(0, 3).map((movie, index) => (
+          {nowPlayingMovie?.slice(0, 3).map((movie) => (
             <CarouselItem className="basis-full" key={movie.id}>
               <div className="mx-auto max-w-[1600px]">
                 <MyCarouselItem

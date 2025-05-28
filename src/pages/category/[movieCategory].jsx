@@ -27,7 +27,7 @@ export default function Category() {
     const fetchCategory = async () => {
       if (!movieCategory) return;
       const data = await getCategory(movieCategory, page);
-      
+
       setCategories(data?.results);
     };
 
@@ -94,9 +94,9 @@ export default function Category() {
               </PaginationContent>
             </Pagination>
           </div>
-          <Footer />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

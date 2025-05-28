@@ -1,7 +1,7 @@
-export const getCategory = async (category, page = 1) => {
+export const getGenres = async () => {
   try {
-    const responce = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}movie/${category}?language=en-US&page=${page}`,
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}genre/movie/list?language=en`,
       {
         method: "GET",
         headers: {
@@ -10,8 +10,7 @@ export const getCategory = async (category, page = 1) => {
         },
       }
     );
-    const data = await responce.json();
-
+    const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);

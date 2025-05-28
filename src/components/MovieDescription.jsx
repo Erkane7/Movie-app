@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export const MovieDescription = ({ movie, id }) => {
   const [cast, setCast] = useState([]);
@@ -17,7 +18,7 @@ export const MovieDescription = ({ movie, id }) => {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
           },
         }
-      );  
+      );
 
       const data = await response.json();
       setCast(data.cast);
@@ -46,13 +47,15 @@ export const MovieDescription = ({ movie, id }) => {
       <div className="mb-4">
         <h2 className="text-2x">
           {movie?.genres?.map((genre) => (
-            <Button
-              key={genre.id}
-              variant="outline"
-              className="rounded-full mx-2"
-            >
-              {genre.name}
-            </Button>
+            <Link href={`/genres/${genre.id}`}>
+              <Button
+                key={genre.id}
+                variant="outline"
+                className="rounded-full mx-2"
+              >
+                {genre.name}
+              </Button>
+            </Link>
           ))}
         </h2>
       </div>

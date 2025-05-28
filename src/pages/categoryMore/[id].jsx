@@ -1,47 +1,47 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { MovieCard } from "@/components/MovieCard";
 import { Button } from "@/components/ui/button";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { getMoreMovies } from "@/services/getMoremovies";
-import { useRouter } from "next/router";
 import { parseAsInteger, useQueryState } from "nuqs";
-import { useEffect } from "react";
 
-export default function Page (){
-   const [categories, setCategories] = useState([]);
+export default function CategorMorePage() {
+  const router = useRouter();
+  const { id } = router.query;
 
-    
-    const [router] =useRouter([]);
-    const {movieCat } =router.query;
-    const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1))
-   
- 
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
 
   useEffect(() => {
-    const fetchMoreLike = async () => {
-        if(!movieCat) return;
-        const data = await getMoreMovies(id,page)
+    const fetchData = async () => {
+      if (!id) return;
+      const data = await getMoreMovies(id, page);
+      console.log(data);
+      setMovies(data?.results);
+    };
 
-        setCategories(data?.results);
-    }
-   
-    fetchMoreLike();
-  }, [id,page]);
+    fetchData();
+  }, [id, page]);
 
-   return ( 
+  return (
     <div>
       <Header />
       <div className="w-full flex justify-center px-4 mt-12">
         <div className="max-w-7xl w-full flex flex-col gap-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-xl font-bold">
-              {(movieCategory === "upcoming" && "Upcoming") ||
-                (movieCategory === "popular" && "Popular") ||
-                (movieCategory === "top_rated" && "Top rated")}
-            </h1>
-          </div>
+          <h1 className="text-xl font-bold">More like this</h1>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {categories.map((movie) => (
+            {movies.slice(0, 10).map((movie) => (
               <MovieCard
                 key={movie.id}
                 id={movie.id}
@@ -51,14 +51,15 @@ export default function Page (){
               />
             ))}
           </div>
-          <div className="mt-">
+
+          <div className="mt-4">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
                     href="#"
                     onClick={() => {
-                      setPage(page - 1);
+                      if (page > 1) setPage(page - 1);
                     }}
                   />
                 </PaginationItem>
@@ -69,7 +70,9 @@ export default function Page (){
                       href="#"
                       onClick={() => setPage(pageNumber)}
                     >
-                      <Button variant={pageNumber === page}>
+                      <Button
+                        variant={pageNumber === page ? "default" : "outline"}
+                      >
                         {pageNumber}
                       </Button>
                     </PaginationLink>
@@ -86,9 +89,10 @@ export default function Page (){
               </PaginationContent>
             </Pagination>
           </div>
-          <Footer />
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

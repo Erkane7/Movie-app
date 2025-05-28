@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Film, Moon, Sun, Search } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { GenreName } from "./Genre";
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -28,9 +44,7 @@ const Header = () => {
         </Link>
 
         <div className="flex items-center gap-4">
-          <button className="items-center justify-between gap-2 w-[97px] h-9 px-4 border border-gray-300 rounded-lg sm:block hidden hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
-            <span>Genre</span>
-          </button>
+          <GenreName />
 
           <div className="relative w-[379px] h-9 sm:block hidden">
             <Search className="absolute left-3 top-1.5 text-gray-400 dark:text-gray-300" />
@@ -43,16 +57,16 @@ const Header = () => {
         </div>
 
         <div className="flex gap-4">
-          <button className="md:hidden lg:hidden gap-2 w-[42px] p-2 px-2 border border-gray-300 rounded-lg dark:border-gray-600">
+          <Button className="md:hidden lg:hidden gap-2 w-[42px] p-2 px-2 border border-gray-300 rounded-lg dark:border-gray-600">
             <Search />
-          </button>
+          </Button>
 
-          <button
+          <Button
             onClick={toggleDarkMode}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 border cursor-pointer dark:border-gray-600"
+            className="p-2 rounded-lg bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-700 border cursor-pointer dark:border-gray-600"
           >
             {darkMode ? <Sun /> : <Moon />}
-          </button>
+          </Button>
         </div>
       </div>
     </header>

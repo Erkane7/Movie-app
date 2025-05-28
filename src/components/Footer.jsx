@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  Star,
-  Play,
   Film,
   Phone,
   Facebook,
@@ -13,8 +11,8 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-indigo-700 text-white py-8 px-6 mt-15 dark:bg-gray-900 dark:text-gray-300">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+    <footer className="w-screen bg-indigo-700 text-white py-8 px-6 mt-15 dark:bg-gray-900 dark:text-gray-300">
+      <div className="mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Film className="text-xl dark:text-indigo-400" />

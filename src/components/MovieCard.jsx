@@ -12,7 +12,6 @@ export const MovieCard = ({ title, vote_average, poster_path, id }) => {
           width={230}
           height={340}
           alt={`${title} poster`}
-          style={{ height: "auto" }}
           priority
         />
         <div className="bg-gray-100 px-4 py-3 h-full dark:bg-gray-900">
