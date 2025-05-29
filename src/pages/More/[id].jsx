@@ -51,43 +51,48 @@ export default function CategorMorePage() {
               />
             ))}
           </div>
-          <div className="mt-4">
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious
-                    href="#"
-                    onClick={() => setPage(page - 1)}
-                  />
+        <div className="mt-4">
+        <Pagination className="gap-2">
+          <PaginationContent>
+
+            <PaginationItem>
+              <PaginationPrevious href="#"   onClick={() => {
+    if (page > 1) setPage(page - 1);
+  }}/>
+            </PaginationItem>
+
+            {Array.from({ length: 4 }, (_, i) => {
+              const pageNum = page - 1 + i;
+                if (pageNum < 1 || pageNum > movies?.total_pages) return null;
+              return (
+                <PaginationItem key={pageNum}>
+                  <PaginationLink href="#" onClick={() => setPage(pageNum)}>
+                    <Button 
+                    className={
+                pageNum === page
+                  ? "bg-gray-300 text-black"
+                  : "bg-white text-black"
+              }
+                    variant={pageNum === page ? "default" : "outline"}>
+                      {pageNum}
+                    </Button>
+                  </PaginationLink>
                 </PaginationItem>
+              );
+            })}
 
-                {Array.from({ length: 3 }, (_, i) => {
-                  const pageNum = page - 1 + i;
-                  return (
-                    <PaginationItem key={pageNum}>
-                      <PaginationLink href="#" onClick={() => setPage(pageNum)}>
-                        <Button
-                          variant={pageNum === page ? "default" : "outline"}
-                        >
-                          {pageNum}
-                        </Button>
-                      </PaginationLink>
-                    </PaginationItem>
-                  );
-                })}
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+   
 
-                {page + 1 < genre?.total_pages && (
-                  <PaginationItem>
-                    <PaginationEllipsis />
-                  </PaginationItem>
-                )}
+            <PaginationItem>
+              <PaginationNext href="#" onClick={() => {if (page +1 <movies?.total_pages) setPage(page + 1)} }/>
+            </PaginationItem>
 
-                <PaginationItem>
-                  <PaginationNext href="#" onClick={() => setPage(page + 1)} />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
+          </PaginationContent>
+        </Pagination>
+      </div>
         </div>
       </div>
 

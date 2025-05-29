@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const MovieDescription = ({ movie, id }) => {
   const [cast, setCast] = useState([]);
   const [director, setDirector] = useState([]);
   const [writer, setWriter] = useState([]);
+  const router = useRouter();
+  const { genreId, name } = router.query;
+    const [selectedGenres, setSelectedGenres] = useState([]);
+
 
   const getMovieDescription = async () => {
     try {
@@ -37,6 +42,18 @@ export const MovieDescription = ({ movie, id }) => {
     }
   };
 
+  const toggleGenre = (id, name) => {
+    setSelectedGenres((prev) => {
+      const genreId = prev.includes(id)
+        ? prev.filter((prevId) => prevId !== id)
+        : [...prev, id];
+
+      router.push(`/genres?genreId=${genreId.join(",")}&name=${name}`);
+
+      return genreId;
+    });
+  };
+
   useEffect(() => {
     if (!id) return;
     getMovieDescription();
@@ -51,9 +68,9 @@ export const MovieDescription = ({ movie, id }) => {
               key={genre.id}
               asChild
               variant="outline"
-              className="rounded-full mx-2"
+              className="rounded-full mx-2 text-black"
             >
-              <Link href={`/genres/${genre.id}`}>{genre.name}</Link>
+              <Button onClick={() => toggleGenre(genre.id, genre.name)}>{genre.name}</Button>
             </Button>
           ))}
         </h2>

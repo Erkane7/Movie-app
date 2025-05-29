@@ -37,7 +37,7 @@ const buttonVariants = cva(
 );
 
 function Button({
-  className = "text-black bg-white ",
+  className = "text-black bg-white",
   variant,
   size,
   asChild = false,
