@@ -47,15 +47,14 @@ export const MovieDescription = ({ movie, id }) => {
       <div className="mb-4">
         <h2 className="text-2x">
           {movie?.genres?.map((genre) => (
-            <Link href={`/genres/${genre.id}`}>
-              <Button
-                key={genre.id}
-                variant="outline"
-                className="rounded-full mx-2"
-              >
-                {genre.name}
-              </Button>
-            </Link>
+            <Button
+              key={genre.id}
+              asChild
+              variant="outline"
+              className="rounded-full mx-2"
+            >
+              <Link href={`/genres/${genre.id}`}>{genre.name}</Link>
+            </Button>
           ))}
         </h2>
       </div>

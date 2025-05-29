@@ -13,7 +13,7 @@ export const MovieCarousel = ({ nowPlayingMovie }) => {
   return (
     <div>
       <Carousel
-        className="relative overflow-hidden rounded-lg mt-4 "
+        className="relative overflow-hidden max-w-screen rounded-lg mt-4 "
         plugins={[
           Autoplay({
             delay: 3000,

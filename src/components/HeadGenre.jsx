@@ -9,42 +9,45 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getGenres } from "@/services/getGenres";
 import { Button } from "./ui/button";
-import { ArrowDownNarrowWide } from "lucide-react";
-import Link from "next/link";
+import { ArrowDownNarrowWide, ArrowRight } from "lucide-react";
+import { useRouter } from "next/router";
 
-export function GenreName({ genreIds }) {
+export function HeadGenre() {
+  const router = useRouter();
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     const getGenreTitle = async () => {
       const response = await getGenres();
-      // console.log(response);
-      setGenres(response?.genres);
+      setGenres(response?.genres || []);
     };
     getGenreTitle();
   }, []);
 
+  const handleSelectGenre = (id, name) => {
+    router.push(`/genres?genreId=${id}&name=${name}`);
+  };
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button>
-          <ArrowDownNarrowWide />
+          <ArrowDownNarrowWide className="mr-2" />
           Genre
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel className="font-bold">Genres</DropdownMenuLabel>
         <DropdownMenuSeparator />
-
         {genres.map((genre) => (
-          <Link href={`/genres/${genre.id}`}>
-            <DropdownMenuItem
-              key={genre.id}
-              className="cursor-pointer rounded-full mx-2 "
-            >
-              {genre.name}
-            </DropdownMenuItem>
-          </Link>
+          <DropdownMenuItem
+            key={genre.id}
+            className="flex cursor-pointer items-center max-w-60 hover:bg-gray-200"
+            onSelect={() => handleSelectGenre(genre.id, genre.name)}
+          >
+            {genre.name}
+            <ArrowRight className="h-3 mt-0.5" />
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

@@ -16,7 +16,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { GenreName } from "./Genre";
+import { GenreName, HeadGenre } from "./HeadGenre";
+import { GenreNames } from "./AllGenre";
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -44,7 +45,7 @@ const Header = () => {
         </Link>
 
         <div className="flex items-center gap-4">
-          <GenreName />
+          <HeadGenre />
 
           <div className="relative w-[379px] h-9 sm:block hidden">
             <Search className="absolute left-3 top-1.5 text-gray-400 dark:text-gray-300" />

@@ -155,7 +155,7 @@ function CarouselPrevious({
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
-    <button
+    <Button
       data-slot="carousel-previous"
       variant={variant}
       size={size}
@@ -172,7 +172,7 @@ function CarouselPrevious({
     >
       <ArrowLeft />
       <span className="sr-only">Previous slide</span>
-    </button>
+    </Button>
   );
 }
 

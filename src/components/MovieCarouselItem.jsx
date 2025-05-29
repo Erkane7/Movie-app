@@ -12,7 +12,7 @@ const MyCarouselItem = ({
   id,
 }) => {
   return (
-    <div className="relative w-screen md:h-[600px] lg:h-[900px]">
+    <div className="relative max-w-screen md:h-[600px] lg:h-[900px]">
       <Link
         href={`/details/${id}`}
         className="inline-flex items-center gap-2 px-5 py-2 rounded-md bg-white text-black font-medium hover:bg-gray-100 transition"

@@ -22,7 +22,7 @@ export const MoreLikeMovie = ({ id }) => {
       <div className="max-w-7xl w-full flex flex-col gap-6">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-bold">More like this</h1>
-          <Link href={`/categoryMore/${id}`}>
+          <Link href={`/More/${id}`}>
             <div className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer hover:text-gray-700 transition-colors">
               <span>See more</span>
               <ArrowRight className="w-4 h-4" />

@@ -39,7 +39,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
             {movie?.title}
           </p>
           <span className="text-gray-700 dark:text-gray-300">
-            {movie?.release_date }
+            {movie?.release_date}
           </span>
           <span className="text-gray-700 dark:text-gray-300">
             {" "}
@@ -82,7 +82,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
             height={430}
             className="rounded-md object-cover"
             alt={`${movie?.title} backdrop`}
-          />  
+          />
         </div>
       </div>
     </div>

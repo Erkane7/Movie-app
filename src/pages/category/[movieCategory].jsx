@@ -59,34 +59,36 @@ export default function Category() {
               />
             ))}
           </div>
-          <div className="mt-">
+          <div className="mt-4">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
                     href="#"
-                    onClick={() => {
-                      setPage(page - 1);
-                    }}
+                    onClick={() => setPage(page - 1)}
                   />
                 </PaginationItem>
 
-                {[1, 2, 3].map((pageNumber) => (
-                  <PaginationItem key={pageNumber}>
-                    <PaginationLink
-                      href="#"
-                      onClick={() => setPage(pageNumber)}
-                    >
-                      <Button variant={pageNumber === page}>
-                        {pageNumber}
-                      </Button>
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
+                {Array.from({ length: 3 }, (_, i) => {
+                  const pageNum = page - 1 + i;
+                  return (
+                    <PaginationItem key={pageNum}>
+                      <PaginationLink href="#" onClick={() => setPage(pageNum)}>
+                        <Button
+                          variant={pageNum === page ? "default" : "outline"}
+                        >
+                          {pageNum}
+                        </Button>
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                })}
 
-                <PaginationItem>
-                  <PaginationEllipsis />
-                </PaginationItem>
+                {page + 1 < categories?.total_pages && (
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                )}
 
                 <PaginationItem>
                   <PaginationNext href="#" onClick={() => setPage(page + 1)} />

@@ -32,9 +32,8 @@ export default function Home() {
     getNowPlayingMovies();
   }, []);
 
-  // const IMAGE_BASE_URL = process.env.IMAGE_PATH;
   return (
-    <div>
+    <div className="mr-10">
       <Header />
       <MovieCarousel nowPlayingMovie={nowPlayingMovie} />
       <Upcoming />
