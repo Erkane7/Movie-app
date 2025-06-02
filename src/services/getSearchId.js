@@ -1,4 +1,4 @@
-export const getSearch = async (searchValue, page = 1) => {
+export const getSearchId = async (searchValue, page = 1) => {
   try {
     const responce = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}search/movie?query=${searchValue}&language=en-US&page=${page}`,

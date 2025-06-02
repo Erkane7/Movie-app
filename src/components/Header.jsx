@@ -16,8 +16,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { GenreName, HeadGenre } from "./HeadGenre";
-import { GenreNames } from "./AllGenre";
+import { HeadGenre } from "./HeadGenre";
+import { SearchInput } from "./SearchInput";
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -48,20 +48,13 @@ const Header = () => {
           <HeadGenre />
 
           <div className="relative w-[379px] h-9 sm:block hidden">
-            <Search className="absolute left-3 top-1.5 text-gray-400 dark:text-gray-300" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full h-full pl-10 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-white"
-            />
+            <SearchInput className="absolute left-3 top-1.5 text-gray-400 dark:text-gray-300">
+              <Search className="bg-amber-200" />
+            </SearchInput>
           </div>
         </div>
 
         <div className="flex gap-4">
-          <Button className="md:hidden lg:hidden gap-2 w-[42px] p-2 px-2 border border-gray-300 rounded-lg dark:border-gray-600">
-            <Search />
-          </Button>
-
           <Button
             onClick={toggleDarkMode}
             className="p-2 rounded-lg bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-700 border cursor-pointer dark:border-gray-600"

@@ -11,23 +11,9 @@ import { getGenres } from "@/services/getGenres";
 import { Button } from "./ui/button";
 import { ArrowDownNarrowWide, ArrowRight } from "lucide-react";
 import { useRouter } from "next/router";
+import { GenreNames } from "./AllGenre";
 
 export function HeadGenre() {
-  const router = useRouter();
-  const [genres, setGenres] = useState([]);
-
-  useEffect(() => {
-    const getGenreTitle = async () => {
-      const response = await getGenres();
-      setGenres(response?.genres || []);
-    };
-    getGenreTitle();
-  }, []);
-
-  const handleSelectGenre = (id, name) => {
-    router.push(`/genres?genreId=${id}&name=${name}`);
-  };
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,19 +22,12 @@ export function HeadGenre() {
           Genre
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-100 ml-5">
         <DropdownMenuLabel className="font-bold">Genres</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {genres.map((genre) => (
-          <DropdownMenuItem
-            key={genre.id}
-            className="flex cursor-pointer items-center max-w-60 hover:bg-gray-200"
-            onSelect={() => handleSelectGenre(genre.id, genre.name)}
-          >
-            {genre.name}
-            <ArrowRight className="h-3 mt-0.5" />
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuItem>
+          <GenreNames />
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

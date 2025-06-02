@@ -9,8 +9,7 @@ export const MovieDescription = ({ movie, id }) => {
   const [writer, setWriter] = useState([]);
   const router = useRouter();
   const { genreId, name } = router.query;
-    const [selectedGenres, setSelectedGenres] = useState([]);
-
+  const [selectedGenres, setSelectedGenres] = useState([]);
 
   const getMovieDescription = async () => {
     try {
@@ -68,9 +67,11 @@ export const MovieDescription = ({ movie, id }) => {
               key={genre.id}
               asChild
               variant="outline"
-              className="rounded-full mx-2 text-black"
+              className="rounded-full mx-2 dark:bg-white text-black"
             >
-              <Button onClick={() => toggleGenre(genre.id, genre.name)}>{genre.name}</Button>
+              <Button onClick={() => toggleGenre(genre.id, genre.name)}>
+                {genre.name}
+              </Button>
             </Button>
           ))}
         </h2>
