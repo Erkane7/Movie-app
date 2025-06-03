@@ -26,13 +26,13 @@ const MyCarouselItem = ({
         }`}
       >
         <Image
+          priority={true}
           src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${backdrop_path}`}
-          width={1920}
+          width={1680}
           height={1000}
           alt="Featured"
           className="overflow-hidden rounded-2xl w-full h-full object-cover"
           onLoadingComplete={() => setLoading(false)}
-          priority
         />
       </Link>
 

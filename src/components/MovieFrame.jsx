@@ -39,12 +39,6 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
     return (
       <div className="flex gap-6 px-4 pb-8 relative">
         <SkeletonCard width={290} height={430} />
-        <div className="relative">
-          <div className="absolute ml-12 mt-110">
-            <Trailer movieId={id} />
-          </div>
-          <SkeletonCard width={1000} height={430} />
-        </div>
       </div>
     );
 
@@ -82,6 +76,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
 
       <div className="flex gap-6 px-4 pb-8 relative">
         <Image
+          priority={true}
           src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${poster_path}`}
           width={290}
           height={430}
@@ -94,6 +89,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
             <Trailer movieId={id} />
           </div>
           <Image
+            priority={true}
             src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${backdrop_path}`}
             width={1000}
             height={430}

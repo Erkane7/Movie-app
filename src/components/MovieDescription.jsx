@@ -65,8 +65,6 @@ export const MovieDescription = ({ movie, id }) => {
     return (
       <div className="mx-auto mt-10 max-w-[1280px] p-4">
         <SkeletonCard />
-        <SkeletonCard />
-        <SkeletonCard />
       </div>
     );
   }

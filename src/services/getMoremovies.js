@@ -1,5 +1,5 @@
 export const getMoreMovies = async (id, page = 1) => {
-  console.log(page);
+  // console.log(page);
   try {
     const responce = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}movie/${id}/similar?language=en-US&page=${page}`,

@@ -8,11 +8,11 @@ export const MovieCard = ({ title, vote_average, poster_path, id }) => {
     <Link href={`/details/${id}`}>
       <div className="rounded-lg shadow-md overflow-hidden w-full max-w-[240px] h-[440px] cursor-pointer hover:shadow-lg transition-shadow bg-white dark:bg-gray-800">
         <Image
+          priority={true}
           src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${poster_path}`}
           width={230}
           height={340}
-          alt={`${title} poster`}
-          priority
+          alt={`${title}poster`}
         />
         <div className="bg-gray-100 px-4 py-3 h-full dark:bg-gray-900">
           <p className="flex items-center text-sm text-gray-900 dark:text-white">

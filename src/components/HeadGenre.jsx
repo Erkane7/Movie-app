@@ -11,7 +11,7 @@ import { getGenres } from "@/services/getGenres";
 import { Button } from "./ui/button";
 import { ArrowDownNarrowWide, ArrowRight } from "lucide-react";
 import { useRouter } from "next/router";
-import { GenreNames } from "./AllGenre";
+import { GenreNames } from "./GenreNames";
 
 export function HeadGenre() {
   return (

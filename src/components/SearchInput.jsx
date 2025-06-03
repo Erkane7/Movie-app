@@ -3,7 +3,8 @@ import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Skeleton } from "@/components/ui/skeleton"; // 👈 нэмсэн
+import { SkeletonCard } from "./Skelton";
+import { Skeleton } from "./ui/skeleton";
 
 export const SearchInput = () => {
   const [query, setQuery] = useState("");
@@ -43,6 +44,24 @@ export const SearchInput = () => {
     return () => clearTimeout(getDelay);
   }, [query]);
 
+  if (loading)
+    return (
+      <div>
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div className="flex gap-4 py-2 border-b rounded-2xl w-[500px]">
+            <Skeleton width={67} height={200} borderRadius={12} />
+            <div className="flex flex-col justify-between w-full">
+              <Skeleton height={50} width="80%" />
+              <div className="flex items-center gap-2">
+                <Skeleton circle width={16} height={16} />
+                <Skeleton width={40} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+
   return (
     <div className="relative">
       <input
@@ -51,33 +70,20 @@ export const SearchInput = () => {
         value={query}
         onKeyDown={handleKeyDown}
         onChange={(e) => setQuery(e.target.value)}
-        className="border-2 border-gray-200 rounded-xl px-4 py-2 shadow-lg w-full md:w-[500px]"
+        className="border-2 border-gray-200 rounded-xl px-4 py-2 shadow-lg w-full md:w-[500px] dark:text-balck"
       />
 
-      {loading && (
-        <div className="absolute z-10 w-full bg-white p-4 rounded-xl mt-2 shadow-md space-y-2">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="flex gap-4">
-              <Skeleton className="w-[67px] h-[100px] rounded-xl" />
-              <div className="flex flex-col space-y-2">
-                <Skeleton className="w-[300px] h-6" />
-                <Skeleton className="w-[100px] h-4" />
-                <Skeleton className="w-[200px] h-4" />
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
       {!loading && results.length > 0 && (
-        <div className="absolute z-10 w-full bg-white p-4 rounded-xl mt-2 shadow-md max-h-[400px] overflow-y-auto">
-          {results.slice(0, 6).map((movie) => {
-            const posterUrl = `${process.env.NEXT_PUBLIC_TMDB_IMAGE_SERVICE_URL}${movie.poster_path}`;
+        <div className="absolute z-10  md:w-[500px] bg-white p-4 dark:text-white dark:bg-black rounded-xl mt-2 shadow-md max-h-[400px] overflow-y-auto">
+          {results.slice(0, 5).map((movie) => {
             return (
-              <div key={movie.id} className="flex gap-4 py-2 border-b">
+              <div
+                key={movie.id}
+                className="flex gap-4 py-2 border-b  rounded-2xl"
+              >
                 <Link href={`/details/${movie.id}`}>
                   <img
-                    src={posterUrl}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${movie.poster_path}`}
                     alt={movie.title}
                     className="w-[67px] h-[100px] rounded-xl cursor-pointer"
                   />
@@ -89,11 +95,7 @@ export const SearchInput = () => {
                     </p>
                   </Link>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Star
-                      color="rgba(253, 224, 71, 1)"
-                      fill="rgba(253, 224, 71, 1)"
-                      className="w-4"
-                    />
+                    <Star color="yellow" fill="orange" className="w-4" />
                     <span className="font-semibold">
                       {movie.vote_average?.toFixed(1)}
                     </span>

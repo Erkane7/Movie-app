@@ -15,7 +15,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { getGenreId } from "@/services/getGenreId";
-import { GenreNames } from "@/components/AllGenre";
+import { GenreNames } from "@/components/GenreNames";
 
 export default function CategorMorePage() {
   const router = useRouter();
