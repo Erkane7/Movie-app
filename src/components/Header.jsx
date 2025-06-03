@@ -18,18 +18,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { HeadGenre } from "./HeadGenre";
 import { SearchInput } from "./SearchInput";
+import { ModeToggle } from "./Darkmode";
 
 const Header = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -55,12 +46,7 @@ const Header = () => {
         </div>
 
         <div className="flex gap-4">
-          <Button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-lg bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-700 border cursor-pointer dark:border-gray-600"
-          >
-            {darkMode ? <Sun /> : <Moon />}
-          </Button>
+          <ModeToggle />
         </div>
       </div>
     </header>

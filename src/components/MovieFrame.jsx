@@ -3,12 +3,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Trailer from "./Trailer";
 import { Dialog, DialogTrigger, DialogContent } from "./ui/dialog";
+import { SkeletonCard } from "./Skelton";
 
 export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
   const [video, setVideo] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const getTrailer = async () => {
     try {
+      setLoading(true);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}movie/${id}/videos?language=en-US`,
         {
@@ -21,6 +24,7 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
       );
       const data = await response.json();
       setVideo(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +34,19 @@ export const MovieFrame = ({ movie, poster_path, backdrop_path, id }) => {
     if (!id) return;
     getTrailer();
   }, [id]);
+
+  if (loading)
+    return (
+      <div className="flex gap-6 px-4 pb-8 relative">
+        <SkeletonCard width={290} height={430} />
+        <div className="relative">
+          <div className="absolute ml-12 mt-110">
+            <Trailer movieId={id} />
+          </div>
+          <SkeletonCard width={1000} height={430} />
+        </div>
+      </div>
+    );
 
   return (
     <div className="flex flex-col mx-auto mt-12 rounded-lg shadow-md overflow-hidden max-w-[1280px] bg-white dark:bg-gray-900">

@@ -51,48 +51,54 @@ export default function CategorMorePage() {
               />
             ))}
           </div>
-        <div className="mt-4">
-        <Pagination className="gap-2">
-          <PaginationContent>
-
-            <PaginationItem>
-              <PaginationPrevious href="#"   onClick={() => {
-    if (page > 1) setPage(page - 1);
-  }}/>
-            </PaginationItem>
-
-            {Array.from({ length: 4 }, (_, i) => {
-              const pageNum = page - 1 + i;
-                if (pageNum < 1 || pageNum > movies?.total_pages) return null;
-              return (
-                <PaginationItem key={pageNum}>
-                  <PaginationLink href="#" onClick={() => setPage(pageNum)}>
-                    <Button 
-                    className={
-                pageNum === page
-                  ? "bg-gray-300 text-black"
-                  : "bg-white text-black"
-              }
-                    variant={pageNum === page ? "default" : "outline"}>
-                      {pageNum}
-                    </Button>
-                  </PaginationLink>
+          <div className="mt-4">
+            <Pagination className="gap-2">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    onClick={() => {
+                      if (page > 1) setPage(page - 1);
+                    }}
+                  />
                 </PaginationItem>
-              );
-            })}
 
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-   
+                {Array.from({ length: 4 }, (_, i) => {
+                  const pageNum = page - 1 + i;
+                  if (pageNum < 1 || pageNum > movies?.total_pages) return null;
+                  return (
+                    <PaginationItem key={pageNum}>
+                      <PaginationLink href="#" onClick={() => setPage(pageNum)}>
+                        <Button
+                          className={
+                            pageNum === page
+                              ? "bg-gray-300 text-black"
+                              : "bg-white text-black"
+                          }
+                          variant={pageNum === page ? "default" : "outline"}
+                        >
+                          {pageNum}
+                        </Button>
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                })}
 
-            <PaginationItem>
-              <PaginationNext href="#" onClick={() => {if (page +1 <movies?.total_pages) setPage(page + 1)} }/>
-            </PaginationItem>
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
 
-          </PaginationContent>
-        </Pagination>
-      </div>
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    onClick={() => {
+                      if (page + 1 < movies?.total_pages) setPage(page + 1);
+                    }}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
         </div>
       </div>
 

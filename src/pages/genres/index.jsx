@@ -15,7 +15,6 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { getGenreId } from "@/services/getGenreId";
-import { GenreName } from "@/components/HeadGenre";
 import { GenreNames } from "@/components/AllGenre";
 
 export default function CategorMorePage() {
@@ -82,8 +81,8 @@ export default function CategorMorePage() {
                     <Button
                       className={
                         pageNum === page
-                          ? "bg-gray-300 text-black"
-                          : "bg-white text-black"
+                          ? "bg-gray-400 text-black  dark:text-white"
+                          : "bg-gray-200 text-black dark:text-white"
                       }
                       variant={pageNum === page ? "default" : "outline"}
                     >

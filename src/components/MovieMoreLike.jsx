@@ -3,19 +3,32 @@ import { MovieCard } from "./MovieCard";
 import { useEffect, useState } from "react";
 import { getMoreMovies } from "@/services/getMoremovies";
 import Link from "next/link"; // Next.js-ийн Link ашиглана
+import { SkeletonCard } from "./Skelton";
 
 export const MoreLikeMovie = ({ id }) => {
   const [moreLikeMovie, setMoreLikeMovie] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const getMoreLikeMovie = async () => {
       const response = await getMoreMovies(id);
       setMoreLikeMovie(response?.results);
+      setLoading(false);
     };
 
     if (!id) return;
     getMoreLikeMovie();
   }, [id]);
+
+  if (loading)
+    return (
+      <div>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+      </div>
+    );
 
   return (
     <div className="w-full flex justify-center px-4 mt-12">
@@ -30,15 +43,18 @@ export const MoreLikeMovie = ({ id }) => {
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          {moreLikeMovie.slice(0, 5).map((movie) => (
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              vote_average={movie.vote_average}
-              poster_path={movie.poster_path}
-            />
-          ))}
+          {moreLikeMovie &&
+            moreLikeMovie
+              .slice(0, 5)
+              .map((movie) => (
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.title}
+                  vote_average={movie.vote_average}
+                  poster_path={movie.poster_path}
+                />
+              ))}
         </div>
       </div>
     </div>

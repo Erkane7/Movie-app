@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { parseAsArrayOf, parseAsInteger, useQueryState } from "nuqs";
 import { getGenres } from "@/services/getGenres";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
 import { ArrowRight } from "lucide-react";
-import { useRouter } from "next/router";
-import { parseAsArrayOf, parseAsInteger, useQueryState } from "nuqs";
 
 export function GenreNames() {
   const router = useRouter();
@@ -17,36 +17,44 @@ export function GenreNames() {
   );
 
   useEffect(() => {
-    const getGenreTitle = async () => {
+    const fetchGenres = async () => {
       setLoading(true);
-      const response = await getGenres();
-      setGenres(response?.genres || []);
-      setLoading(false);
+      try {
+        const response = await getGenres();
+        setGenres(response?.genres || []);
+      } finally {
+        setLoading(false);
+      }
     };
-    getGenreTitle();
+    fetchGenres();
   }, []);
 
   const toggleGenre = (id, name) => {
     const isSelected = genreIds.includes(id);
-    const newIds = isSelected
+    const updatedGenreIds = isSelected
       ? genreIds.filter((genreId) => genreId !== id)
       : [...genreIds, id];
-    setGenreIds(newIds);
+
+    setGenreIds(updatedGenreIds);
 
     const selectedNames = genres
-      .filter((genre) => newIds.includes(genre.id))
+      .filter((genre) => updatedGenreIds.includes(genre.id))
       .map((genre) => genre.name);
 
     router.push(
-      `/genres?genreId=${newIds.join(",")}&name=${selectedNames.join(", ")}`
+      `/genres?genreId=${updatedGenreIds.join(",")}&name=${selectedNames.join(
+        ", "
+      )}`
     );
   };
 
   return (
     <div className="mx-auto ml-2">
-      <h2>See lists of movies by genre</h2>
+      <h2 className="text-lg font-semibold mb-4">
+        See lists of movies by genre
+      </h2>
 
-      <div className="mt-5 mx-auto gap-3 flex flex-wrap max-w-110">
+      <div className="flex flex-wrap gap-3 max-w-110">
         {loading
           ? Array.from({ length: 8 }).map((_, index) => (
               <Skeleton
@@ -60,15 +68,15 @@ export function GenreNames() {
               return (
                 <Button
                   key={genre.id}
-                  className={`flex items-center border rounded-full cursor-pointer hover:bg-gray-300 ${
+                  onClick={() => toggleGenre(genre.id, genre.name)}
+                  className={`flex items-center gap-1 rounded-full border transition-colors duration-200 ${
                     isSelected
                       ? "bg-gray-400 text-white"
-                      : "bg-white text-black"
+                      : "bg-white text-black hover:bg-gray-200"
                   }`}
-                  onClick={() => toggleGenre(genre.id, genre.name)}
                 >
                   {genre.name}
-                  <ArrowRight className="h-3 mt-0.5 ml-1" />
+                  <ArrowRight className="h-3" />
                 </Button>
               );
             })}
