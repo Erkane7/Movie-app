@@ -29,9 +29,9 @@ const MyCarouselItem = ({
           priority={true}
           src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${backdrop_path}`}
           width={1680}
-          height={1000}
+          height="100"
           alt="Featured"
-          className="overflow-hidden rounded-2xl w-full h-full object-cover"
+          className="overflow-hidden rounded-2xl max-w-full h-full"
           onLoadingComplete={() => setLoading(false)}
         />
       </Link>

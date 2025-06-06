@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import {
   DropdownMenu,
@@ -7,11 +6,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { getGenres } from "@/services/getGenres";
 import { Button } from "./ui/button";
-import { ArrowDownNarrowWide, ArrowRight } from "lucide-react";
-import { useRouter } from "next/router";
+import { ArrowDownNarrowWide } from "lucide-react";
 import { GenreNames } from "./GenreNames";
+
+const Palindrom = (x) => {
+  const input = x.toString();
+  input = input.split("").reverse().join("") ? true : false;
+};
+
+x[i];
 
 export function HeadGenre() {
   return (
@@ -22,7 +26,7 @@ export function HeadGenre() {
           Genre
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-100 ml-5">
+      <DropdownMenuContent className="ml-5 w-100">
         <DropdownMenuLabel className="font-bold">Genres</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

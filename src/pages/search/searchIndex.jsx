@@ -14,7 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { getSearch } from "@/services/getSearchId";
+import { getSearchId } from "@/services/getSearchId";
 
 export default function CategorMorePage() {
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function CategorMorePage() {
     if (page < 1) setPage(1);
     const fetchData = async () => {
       if (!genreId) return;
-      const data = await getSearch(genreId, page);
+      const data = await getSearchId(genreId, page);
       setGenre(data);
     };
 
@@ -36,14 +36,14 @@ export default function CategorMorePage() {
   return (
     <div>
       <Header />
-      <h1 className="flex mt-15 ml-30 text-2xl font-bold">Search filter:</h1>
-      <div className="w-full flex mt-12">
-        <div className="max-w-6xl w-full mt-10 flex flex-col gap-6">
-          <h1 className="font-bold text-2xl">
+      <h1 className="flex text-2xl font-bold mt-15 ml-30">Search filter:</h1>
+      <div className="flex w-full mt-12">
+        <div className="flex flex-col w-full max-w-6xl gap-6 mt-10">
+          <h1 className="text-2xl font-bold">
             {genre?.total_results} titles in "{name}"
           </h1>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-auto">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-auto">
             {genre?.results?.map((movie) => (
               <MovieCard
                 key={movie.id}

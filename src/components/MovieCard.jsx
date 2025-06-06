@@ -10,11 +10,11 @@ export const MovieCard = ({ title, vote_average, poster_path, id }) => {
         <Image
           priority={true}
           src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}${poster_path}`}
-          width={230}
-          height={340}
+          width={240}
+          height={330}
           alt={`${title}poster`}
         />
-        <div className="bg-gray-100 px-4 py-3 h-full dark:bg-gray-900">
+        <div className="bg-gray-100 px-4 py-1 h-full dark:bg-gray-900">
           <p className="flex items-center text-sm text-gray-900 dark:text-white">
             <Star className="text-yellow-500 mr-1" size={16} />
             <span className="font-semibold  dark:text-white">

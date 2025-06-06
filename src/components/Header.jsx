@@ -39,12 +39,9 @@ const Header = () => {
           <HeadGenre />
 
           <div className="relative w-[379px] h-9 sm:block hidden">
-            <SearchInput className="absolute left-3 top-1.5 text-gray-400 dark:text-gray-300">
-              <Search className="bg-amber-200" />
-            </SearchInput>
+            <SearchInput className="absolute left-3 text-gray-400 dark:text-gray-300"></SearchInput>
           </div>
         </div>
-
         <div className="flex gap-4">
           <ModeToggle />
         </div>

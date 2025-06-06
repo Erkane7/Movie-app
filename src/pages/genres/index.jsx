@@ -42,11 +42,10 @@ export default function CategorMorePage() {
       <div className="w-full flex mt-10 gap-8 ml-10">
         <GenreNames className="mt-25" />
         <div className="border-1 max-h-full mx-auto "></div>
-        <div className="max-w-6xl w-full flex flex-col gap-6 ">
+        <div className="max-w-6xl w-full flex flex-col gap-6 mr-10">
           <h1 className="font-bold text-2xl">
             {genre?.total_results} titles in "{name}"
           </h1>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-auto">
             {genre?.results?.map((movie) => (
               <MovieCard
@@ -60,7 +59,7 @@ export default function CategorMorePage() {
           </div>
         </div>
       </div>
-      <div className="mt-4">
+      <div className="mt-20">
         <Pagination className="gap-2">
           <PaginationContent>
             <PaginationItem>
